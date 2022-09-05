@@ -4,13 +4,11 @@
 
 <script>
   import { useAccountsStore } from "@/store/useAccounts";
-  import { createPinia } from "pinia";
-
-  const pinia = createPinia();
-  const main = useAccountsStore( pinia );
 
   export default {
     setup() {
+      const main = useAccountsStore();
+      
       return {
         main,
         columns: [
@@ -41,7 +39,7 @@
       fetch( process.env.VUE_APP_API_URL )
         .then(( res ) => res.json())
         .then(( data ) => {
-          main.setAccounts( data );
+          this.main.setAccounts( data );
         });
     },
   };
